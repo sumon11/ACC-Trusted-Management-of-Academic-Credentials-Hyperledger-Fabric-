@@ -282,7 +282,7 @@ const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizatio
     }
 });
 
-app.get('/api/querySingleMarks/{studentId}', async function (req, res)  {
+app.get('/api/querySingleMarks/:id', async function (req, res)  {
     try {
 const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
         const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
@@ -311,7 +311,7 @@ const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizatio
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('queryMarks', studentId);
+        const result = await contract.evaluateTransaction('queryMarks', req.params.id);
     console.log(JSON.parse(result)[0]["Record"]);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         res.status(200).json({response: result.toString()});
