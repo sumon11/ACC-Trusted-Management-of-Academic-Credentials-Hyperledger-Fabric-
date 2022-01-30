@@ -311,7 +311,7 @@ const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizatio
         // Evaluate the specified transaction.
         // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
         // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('queryAllMarks');
+        const result = await contract.evaluateTransaction('queryMarks', req.body.studentId);
     console.log(JSON.parse(result)[0]["Record"]);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
         res.status(200).json({response: result.toString()});
